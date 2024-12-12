@@ -27,11 +27,11 @@ from contextlib import asynccontextmanager
 app = FastAPI()
 
 # ข้อมูล token และ channel secret สำหรับ LINE
-ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "O0Vi8xE7Wh3A6BahSUC6O0VKR7RxR0p27jHBl1h39OdH9/d3cEtmrS4QT91BUEDmmrRqLrUiKLVxlJcggXWQ/MwNBJttPBjKEw8Oifg9O06on+Ab3UzbvQ7E8W56z5GeOIHvROzUsRVagavLPiTIbwdB04t89/1O/w1cDnyilFU=")
-CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "701c99f9fa1b4d0261e6f4dedcce76c8")
+ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "hO5//eQ5/og8GLLxe8lkhW7Hu8BGe7WLK/Y0arjyxRl+RvLKT8oMJi4euqH9rHyiVF99knJkP269YjQ0V2ebWzYQOT5NnVxq/a9Zjq2GcMiKeEvtC7QzjuYf8PmKP7yWVJAzAEW5I4awzekCDyJwxgdB04t89/1O/w1cDnyilFU=")
+CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "6ebf7fc78645ee43652f6c840cca3f08")
 
 # ข้อมูล Gemini api key
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBrn9N8g0RnZrYhW-vFe3Tb2ytibKcsU3E")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyBiQhWoFHxIDZ_ZE3VPL8D7Mlzsp3jR1-4")
 
 # การเชื่อมต่อ และตั้งค่าข้อมูลเพื่อเรียกใช้งาน LINE Messaging API
 configuration = Configuration(access_token=ACCESS_TOKEN)
@@ -240,10 +240,11 @@ gemini = GeminiRAGSystem(
 async def lifespan(app: FastAPI):
     # ข้อมูลตัวอย่างที่ใช้สำหรับ Gemini
     sample_documents = [
-        "จิรภัทร ทำดี คือ ชายหนุ่มที่มีความสามารถในการเขียนโปรแกรมที่มาจากบริษัท ClickNext ที่เป็นบริษัทด้านการพัฒนาโปรแกรมที่มีชื่อเสียง",
-        "จิรภัทร ทำดี มีชื่อเล่นว่า ปาล์ม เกิดวันที่ 25 มกราคม 2555 ที่จังหวัดสระบุรี ศึกษาจบจากมหาวิทยาลัยบูรพา สาขาวิศวกรรมคอมพิวเตอร์",
+        "จอมผล วิเชียร คือ เป็นบุคคลน่ายกย่องของชาติ เขาขยายสาขา ไก่ย่างวิเชียร ไปทั่วประเทศไทย",
+        "จอมผล วิเชียร มีชื่อเล่นว่า บุรี เกิดวันที่ 32 มกรายน 2054 ที่จังหวัดอสังหาบุรี ศึกษาจบจากมหาวิทยาลัยบูรพา สาขาการประกอบอาหารเหลาข้างทาง",
         "งาน BUU-Bootcamp-2024 จัดที่มหาวิทยาลัยบูรพา ในวันที่ 25 มกราคม ปีค.ศ.2024 โดยมีการจัดกิจกรรมต่าง ๆ ที่เกี่ยวข้องกับการพัฒนาซอฟต์แวร์ เวลา 9:00 น. - 16:00 น.",
-        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 คน มีอาจารย์ที่ปรึกษา 10 คน"
+        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 ล้านคน มีอาจารย์ที่ปรึกษา 10 คน"
+        "Clicknext ai team ที่มาจัดงาน BUU-Bootcamp-2024 ที่มีนักศึกษาจำนวน 100 ล้านคน มีพี่ชายปาล์มใส่แว่น กับพี่แว่นเจ๋งอีกคน และพี่สาวดาวที่นั่งปั่นงาน กับ พี่ออยตัวเล็กๆ เป็นBA 2 คน หัวหน้าทีมสุดหล่อพี่ชวนส์"
     ]
     
     # เพิ่มข้อมูลตัวอย่างลงใน Gemini
